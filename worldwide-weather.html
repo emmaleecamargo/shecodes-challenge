@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>WorldWide Weather</title>
+    <meta charset="UTF-8" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap"
+      rel="stylesheet"
+    />
+    <link href="src/styles.css" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+
+  <body>
+    <h1>WorldWide Weather</h1>
+    <h2 id="date">Today's time</h2>
+    <form class="search-form" id="search-form">
+      <input
+        class="searching"
+        id="city-input"
+        type="search"
+        placeholder="Search For Your City 🔎"
+      />
+    </form>
+    <br />
+    <div class="card" style="width: 18rem">
+      <div class="card-body">
+        <h5 class="card-title" id="main-card-title">Lisbon</h5>
+        <p class="card-text" id="main-card-description">
+          Precipitation: 0% Humidity: 49% Wind: 35 km/h
+        </p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item" id="main-temperature">16℃</li>
+        <li class="list-group-item" id="main-weather-description">Sunny</li>
+        <li class="list-group-item" id="main-emoji">☀</li>
+      </ul>
+    </div>
+    <h2>5-Day Forecast</h2>
+    <div class="card" style="width: 18rem">
+      <div class="card-body">
+        <h5 class="card-title">Monday</h5>
+        <p class="card-text">Precipitation: 0% Humidity: 49% Wind: 35 km/h</p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">18℃</li>
+        <li class="list-group-item">Sunny</li>
+        <li class="list-group-item">☀</li>
+      </ul>
+    </div>
+    <br />
+    <div class="card" style="width: 18rem">
+      <div class="card-body">
+        <h5 class="card-title">Tuesday</h5>
+        <p class="card-text">Precipitation: 0% Humidity: 49% Wind: 35 km/h</p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">15℃</li>
+        <li class="list-group-item">Cloudy</li>
+        <li class="list-group-item">🌥</li>
+      </ul>
+    </div>
+    <br />
+    <div class="card" style="width: 18rem">
+      <div class="card-body">
+        <h5 class="card-title">Wednesday</h5>
+        <p class="card-text">Precipitation: 0% Humidity: 49% Wind: 35 km/h</p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">12℃</li>
+        <li class="list-group-item">Rainy</li>
+        <li class="list-group-item">☔</li>
+      </ul>
+    </div>
+    <br />
+    <div class="card" style="width: 18rem">
+      <div class="card-body">
+        <h5 class="card-title">Thursday</h5>
+        <p class="card-text">Precipitation: 0% Humidity: 49% Wind: 35 km/h</p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">13℃</li>
+        <li class="list-group-item">Rainy</li>
+        <li class="list-group-item">☔</li>
+      </ul>
+    </div>
+    <br />
+    <div class="card" style="width: 18rem">
+      <div class="card-body">
+        <h5 class="card-title">Friday</h5>
+        <p class="card-text">Precipitation: 0% Humidity: 49% Wind: 35 km/h</p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">19℃</li>
+        <li class="list-group-item">Sunny</li>
+        <li class="list-group-item">☀</li>
+      </ul>
+    </div>
+    <script src="src/index.js"></script>
+  </body>
+</html>
