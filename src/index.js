@@ -43,7 +43,7 @@ function search(event) {
   let cityElement = document.querySelector("#main-card-title");
   let cityInput = document.querySelector("#city-input");
   cityElement.innerHTML = cityInput.value;
-  search(cityInputElement.value);
+  search(cityInput.value);
 }
 
 let form = document.querySelector("#search-form");
@@ -57,6 +57,7 @@ function getForecast(coordinates) {
 }
 
 function displayWeather(response) {
+  console.log(response.data);
   let cityInput = document.querySelector("#city-input");
   let cityElement = document.querySelector("#main-card-title");
   let cityDescription = document.querySelector("#main-card-description");
