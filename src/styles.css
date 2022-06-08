@@ -2,9 +2,14 @@ h1 {
   color: green;
   text-align: center;
   font-family: "Didact Gothic", sans-serif;
-  padding: 5%;
+  padding: 2%;
 }
 .searching {
+  text-align: center;
+  margin: 0 auto;
+  display: block;
+}
+.btn {
   text-align: center;
   margin: 0 auto;
   display: block;
@@ -17,5 +22,5 @@ h2 {
   color: green;
   text-align: center;
   font-family: "Didact Gothic", sans-serif;
-  padding: 5%;
+  padding: 2%;
 }

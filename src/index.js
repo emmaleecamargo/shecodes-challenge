@@ -32,6 +32,9 @@ function getDate(date) {
   h2.innerHTML = `${day}, ${month} ${dayIndex}, ${hours}:${minutes}`;
 }
 
+let now = new Date();
+getDate(now);
+
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", search);
 
@@ -40,14 +43,18 @@ function search(event) {
   let cityElement = document.querySelector("#main-card-title");
   let cityInput = document.querySelector("#city-input");
   cityElement.innerHTML = cityInput.value;
+  search(cityInputElement.value);
 }
 
-let now = new Date();
-getDate(now);
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", search);
 
 let cityInput = document.querySelector("#city-input");
-let apiKey = "96a225160ee7bd59b386370f8dd55115";
-let url = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput}&appid=${apiKey}&units=metric`;
+function getForecast(coordinates) {
+  let apiKey = "96a225160ee7bd59b386370f8dd55115";
+  let url = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput}&appid=${apiKey}&units=metric`;
+  axios.get(url).then(displayWeather);
+}
 
 function displayWeather(response) {
   let cityInput = document.querySelector("#city-input");
@@ -58,17 +65,26 @@ function displayWeather(response) {
     "#main-weather-description"
   );
   let emoji = document.querySelector("main-emoji");
-  let temperature = Math.round(response.data.main.temp);
+
+  celsiusTemperature = response.data.main.temp;
+
+  let temperature = Math.round(celsiusTemperature);
   let humidity = response.data.main.humidity;
   let windSpeed = response.data.main.wind.speed;
 
+  cityTemp.innerHTML = Math.round(celsiusTemperature);
+  cityElement.innerHTML = response.data.name;
+  cityWeatherDescription.innerHTML = response.data.weather[0].description;
+  humidity.innerHTML = response.data.main.humidity;
+  windSpeed.innerHTML = Math.round(response.data.wind.speed);
+
   cityElement.innerHTML = cityInput.value;
-  cityDescription.innerHTML = `Humidity: ${humidity}% Wind: ${windSpeed} km/h`;
   cityTemp.innerHTML = temperature;
   if (temperature >= 20) {
     cityWeatherDescription.innerHTML = `Sunny`;
     emoji.innerHTML = `☀`;
   }
-}
+  cityDescription.innerHTML = `Humidity: ${humidity}% Wind: ${windSpeed} km/h`;
 
-axios.get(url).then(displayWeather);
+  getForecast(response.data.coord);
+}
