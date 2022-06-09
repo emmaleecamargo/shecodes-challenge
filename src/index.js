@@ -73,6 +73,8 @@ function displayWeather(response) {
 }
 
 let cityInput = document.querySelector("#city-input");
+let apiKey = "96a225160ee7bd59b386370f8dd55115";
+let url = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput}&appid=${apiKey}&units=metric`;
 
 function search(city) {
   let apiKey = "96a225160ee7bd59b386370f8dd55115";

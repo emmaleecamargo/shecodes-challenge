@@ -1,13 +1,18 @@
+body {
+  background-color: rgba(25, 69, 137, 0.3);
+}
 h1 {
   color: green;
   text-align: center;
   font-family: "Didact Gothic", sans-serif;
+  font-weight: bold;
   padding: 2%;
 }
 .searching {
   text-align: center;
-  margin: 0 auto;
+  margin: 10px auto;
   display: block;
+  padding: 0.5%;
 }
 .btn {
   text-align: center;
@@ -18,9 +23,28 @@ h1 {
   text-align: center;
   margin: 0 auto;
 }
-h2 {
+h2.time {
+  color: rgb(0, 0, 0);
+  text-align: center;
+  font-family: "Didact Gothic", sans-serif;
+  font-size: 20px;
+  padding: 1%;
+}
+h2.forecast {
   color: green;
   text-align: center;
   font-family: "Didact Gothic", sans-serif;
-  padding: 2%;
+  padding: 1%;
+  font-weight: bold;
+}
+.row {
+  display: flex;
+  margin: 0 auto;
+}
+#main-card-title {
+  font-size: 25px;
+  font-weight: 650;
+}
+.card-title {
+  color: #194589;
 }
