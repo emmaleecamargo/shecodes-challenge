@@ -78,4 +78,38 @@ function handleSubmit(event) {
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
 
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+
+  let days = ["Thu", "Fri", "Sat", "Sun"];
+
+  let forecastHTML = `<div class="row">`;
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `<div class="col-sm-2">
+        <div class="card" style="width: 14rem">
+          <div class="card-body">
+            <h5 class="card-title">Monday</h5>
+            <p class="card-text">
+              Precipitation: 0% <br />
+              Humidity: 49% <br />Wind: 35 km/h
+            </p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">18℃</li>
+            <li class="list-group-item">Sunny</li>
+            <li class="list-group-item">☀</li>
+          </ul>
+        </div>
+      </div>
+  `;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+  console.log(forecastHTML);
+}
+
 search("Lisbon");
+displayForecast();
