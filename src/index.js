@@ -39,18 +39,15 @@ function displayWeather(response) {
   console.log(response.data);
   let cityInput = document.querySelector("#city-input");
   let cityElement = document.querySelector("#main-card-title");
-  let cityDescription = document.querySelector("#main-card-description");
   let cityTemp = document.querySelector("#main-temperature");
   let cityWeatherDescription = document.querySelector(
     "#main-weather-description"
   );
+  let humidity = document.querySelector("#humidity");
+  let windSpeed = document.querySelector("#wind");
   let iconElement = document.querySelector("#icon");
 
   celsiusTemperature = response.data.main.temp;
-
-  let temperature = Math.round(celsiusTemperature);
-  let humidity = response.data.main.humidity;
-  let windSpeed = response.data.wind.speed;
 
   cityTemp.innerHTML = Math.round(celsiusTemperature);
   cityElement.innerHTML = response.data.name;
@@ -62,9 +59,6 @@ function displayWeather(response) {
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
-
-  cityElement.innerHTML = cityInput.value;
-  cityTemp.innerHTML = temperature;
 
   //getForecast(response.data.coord);
 }
