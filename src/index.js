@@ -44,7 +44,7 @@ function displayWeather(response) {
   let cityWeatherDescription = document.querySelector(
     "#main-weather-description"
   );
-  let emoji = document.querySelector("main-emoji");
+  let iconElement = document.querySelector("#icon");
 
   celsiusTemperature = response.data.main.temp;
 
@@ -57,14 +57,14 @@ function displayWeather(response) {
   cityWeatherDescription.innerHTML = response.data.weather[0].description;
   humidity.innerHTML = response.data.main.humidity;
   windSpeed.innerHTML = Math.round(response.data.wind.speed);
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  iconElement.setAttribute("alt", response.data.weather[0].description);
 
   cityElement.innerHTML = cityInput.value;
   cityTemp.innerHTML = temperature;
-  if (temperature >= 20) {
-    cityWeatherDescription.innerHTML = `Sunny`;
-    emoji.innerHTML = `☀`;
-  }
-  cityDescription.innerHTML = `Humidity: ${humidity}% Wind: ${windSpeed} km/h`;
 
   //getForecast(response.data.coord);
 }
@@ -84,4 +84,4 @@ function handleSubmit(event) {
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
 
-search("Paris");
+search("Lisbon");
