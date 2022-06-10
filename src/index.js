@@ -35,6 +35,43 @@ function getDate(date) {
 let now = new Date();
 getDate(now);
 
+function displayForecast(response) {
+  console.log(response.data.daily);
+  let forecastElement = document.querySelector("#forecast");
+
+  let days = ["Thu", "Fri", "Sat", "Sun"];
+
+  let forecastHTML = `<div class="row">`;
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `<div class="col-sm-2">
+        <div class="card" style="width: 14rem">
+          <div class="card-body">
+            <h5 class="card-title">${day.dt}</h5>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><span class="forecast-temp-max"> ${day.temp.max}℃</span></li>
+            <li class="list-group-item"><span class="forecast-temp-min"> ${day.temp.min}℃</span></li>
+            <li class="list-group-item"><img src="http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png" alt="" /></li>
+          </ul>
+        </div>
+      </div>
+  `;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+  console.log(forecastHTML);
+}
+
+function getForecast(coordinates) {
+  console.log(coordinates);
+  let apiKey = "96a225160ee7bd59b386370f8dd55115";
+  let url = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  axios.get(url).then(displayForecast);
+}
+
 function displayWeather(response) {
   console.log(response.data);
   let cityInput = document.querySelector("#city-input");
@@ -60,7 +97,7 @@ function displayWeather(response) {
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
 
-  //getForecast(response.data.coord);
+  getForecast(response.data.coord);
 }
 
 function search(city) {
@@ -78,38 +115,4 @@ function handleSubmit(event) {
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
 
-function displayForecast() {
-  let forecastElement = document.querySelector("#forecast");
-
-  let days = ["Thu", "Fri", "Sat", "Sun"];
-
-  let forecastHTML = `<div class="row">`;
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `<div class="col-sm-2">
-        <div class="card" style="width: 14rem">
-          <div class="card-body">
-            <h5 class="card-title">Monday</h5>
-            <p class="card-text">
-              Precipitation: 0% <br />
-              Humidity: 49% <br />Wind: 35 km/h
-            </p>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">18℃</li>
-            <li class="list-group-item">Sunny</li>
-            <li class="list-group-item">☀</li>
-          </ul>
-        </div>
-      </div>
-  `;
-  });
-
-  forecastHTML = forecastHTML + `</div>`;
-  forecastElement.innerHTML = forecastHTML;
-  console.log(forecastHTML);
-}
-
 search("Lisbon");
-displayForecast();
