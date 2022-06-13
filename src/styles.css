@@ -58,3 +58,9 @@ p,
 #main-weather-description {
   opacity: 0.7;
 }
+.coded {
+  text-align: center;
+}
+.github {
+  text-decoration: none;
+}
