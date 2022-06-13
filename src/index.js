@@ -1,6 +1,5 @@
 function getDate(date) {
   let h2 = document.querySelector("h2");
-  let dayIndex = date.getDate();
   let hours = date.getHours();
   if (hours < 10) {
     hours = `0${hours}`;
@@ -10,30 +9,30 @@ function getDate(date) {
     minutes = `0${minutes}`;
   }
 
-  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
   let day = days[date.getDay()];
 
-  let months = [
-    "Jan",
-    "Feb",
-    "March",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
-  let month = months[date.getMonth()];
-
-  h2.innerHTML = `${day}, ${month} ${dayIndex}, ${hours}:${minutes}`;
+  h2.innerHTML = `${day} ${hours}:${minutes}`;
 }
 
 let now = new Date();
 getDate(now);
+
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[day];
+}
 
 function displayForecast(response) {
   console.log(response.data.daily);
@@ -43,18 +42,23 @@ function displayForecast(response) {
   let days = ["Thu", "Fri", "Sat", "Sun"];
 
   let forecastHTML = `<div class="row">`;
-  forecast.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `<div class="col-sm-2">
+  forecast.forEach(function (day, index) {
+    if (index < 5)
+      forecastHTML =
+        forecastHTML +
+        `<div class="col">
         <div class="card" style="width: 14rem">
           <div class="card-body">
-            <h5 class="card-title">${day.dt}</h5>
+            <h5 class="card-title">${formatDay(day.dt)}</h5>
           </div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item"><span class="forecast-temp-max"> ${day.temp.max}℃</span></li>
-            <li class="list-group-item"><span class="forecast-temp-min"> ${day.temp.min}℃</span></li>
-            <li class="list-group-item"><img src="http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png" alt="" /></li>
+            <li class="list-group-item"><span class="forecast-temp-max"> 
+            ${Math.round(day.temp.max)}℃</span></li>
+            <li class="list-group-item"><span class="forecast-temp-min"> 
+            ${Math.round(day.temp.min)}℃</span></li>
+            <li class="list-group-item"><img src="http://openweathermap.org/img/wn/${
+              day.weather[0].icon
+            }@2x.png" alt="" /></li>
           </ul>
         </div>
       </div>
@@ -75,7 +79,6 @@ function getForecast(coordinates) {
 
 function displayWeather(response) {
   console.log(response.data);
-  let cityInput = document.querySelector("#city-input");
   let cityElement = document.querySelector("#main-card-title");
   let cityTemp = document.querySelector("#main-temperature");
   let cityWeatherDescription = document.querySelector(
@@ -97,7 +100,6 @@ function displayWeather(response) {
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
-
   getForecast(response.data.coord);
 }
 
