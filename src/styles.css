@@ -22,6 +22,7 @@ h1 {
 .card {
   text-align: center;
   margin: 0 auto;
+  float: none;
 }
 h2.time {
   color: rgb(0, 0, 0);
@@ -47,4 +48,13 @@ h2.forecast {
 }
 .card-title {
   color: #194589;
+}
+ul,
+p {
+  font-weight: 600;
+}
+.forecast-temp-min,
+p,
+#main-weather-description {
+  opacity: 0.7;
 }
